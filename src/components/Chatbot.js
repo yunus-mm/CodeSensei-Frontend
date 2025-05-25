@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, TextField, Typography, Container, Paper, List, ListItem, Divider } from '@mui/material';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import atomOneLight from 'react-syntax-highlighter/dist/styles/atom-one-light';
 
 const Chatbot = () => {
     const [messages, setMessages] = useState([]);
@@ -22,7 +22,7 @@ const Chatbot = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('https://codesensei-7hnk.onrender.com/api/chat', {
+            const response = await fetch('https://codesensei-backend.onrender.com/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ const Chatbot = () => {
                                                                         <Button size="small" onClick={handleEdit} sx={{ color: '#333', backgroundColor: '#f5f5f5', '&:hover': { backgroundColor: '#e0e0e0' } }}>Edit</Button>
                                                                     </div>
                                                                     <SyntaxHighlighter
-                                                                        style={oneLight}
+                                                                        style={atomOneLight}
                                                                         language={match ? match[1] : undefined}
                                                                         PreTag="div"
                                                                         customStyle={{
@@ -107,6 +107,7 @@ const Chatbot = () => {
                                                                             padding: '12px',
                                                                             fontSize: '1em',
                                                                             margin: 0,
+                                                                            whiteSpace: 'pre-wrap',
                                                                         }}
                                                                         {...props}
                                                                     >

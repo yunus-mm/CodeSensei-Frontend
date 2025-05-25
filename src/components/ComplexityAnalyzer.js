@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Container, Paper, Grid, Card, CardContent, Divider, CircularProgress } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import atomOneLight from 'react-syntax-highlighter/dist/styles/atom-one-light';
 
 const ComplexityAnalyzer = () => {
     const [code, setCode] = useState('');
@@ -16,7 +16,7 @@ const ComplexityAnalyzer = () => {
         setAnalysis(null);
         setError('');
         try {
-            const response = await fetch('https://codesensei-7hnk.onrender.com/api/analysis', {
+            const response = await fetch('https://codesensei-backend.onrender.com/api/analysis', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ const ComplexityAnalyzer = () => {
                                             </Box>
                                             <SyntaxHighlighter
                                                 language="cpp"
-                                                style={oneLight}
+                                                style={atomOneLight}
                                                 customStyle={{
                                                     background: '#e3f2fd',
                                                     borderRadius: '6px',
@@ -119,21 +119,25 @@ const ComplexityAnalyzer = () => {
                                             </SyntaxHighlighter>
                                         </Grid>
                                         <Grid item xs={12} md={6}>
-                                            <Typography variant="subtitle1" gutterBottom>
-                                                Time Complexity:
-                                            </Typography>
-                                            <Typography variant="body1" sx={{ color: '#1976d2', fontWeight: 'bold' }}>
-                                                {analysis.timeComplexity}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Typography variant="subtitle1" gutterBottom>
-                                                Space Complexity:
-                                            </Typography>
-                                            <Typography variant="body1" sx={{ color: '#1976d2', fontWeight: 'bold' }}>
-                                                {analysis.spaceComplexity}
-                                            </Typography>
-                                        </Grid>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <Box>
+            <Typography variant="subtitle1" gutterBottom>
+                Time Complexity:
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#1976d2', fontWeight: 'bold' }}>
+                {analysis.timeComplexity}
+            </Typography>
+        </Box>
+        <Box>
+            <Typography variant="subtitle1" gutterBottom>
+                Space Complexity:
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#1976d2', fontWeight: 'bold' }}>
+                {analysis.spaceComplexity}
+            </Typography>
+        </Box>
+    </Box>
+</Grid>
                                     </Grid>
                                 </CardContent>
                             </Card>
