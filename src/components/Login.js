@@ -4,6 +4,11 @@ import { Box, Button, TextField, Typography, Container, Paper } from '@mui/mater
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    // Clear any previous user info on page load
+    React.useEffect(() => {
+        localStorage.removeItem('username');
+        localStorage.removeItem('isLoggedIn');
+    }, []);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

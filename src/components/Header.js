@@ -11,6 +11,8 @@ const Header = ({ showSnackbar }) => {
   }, [menuOpen]);
     const navigate = useNavigate();
     const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('username');
         localStorage.removeItem('token'); // if you use tokens
