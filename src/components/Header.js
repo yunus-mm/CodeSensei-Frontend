@@ -24,29 +24,29 @@ const Header = ({ showSnackbar }) => {
     return (
         <AppBar position="static" elevation={1} sx={{ mb: 4, background: '#e6f4ff', animation: 'fadeIn 0.5s' }}>
   <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
-            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Box sx={{ position: 'relative' }}>
-  <Avatar
-    sx={{ bgcolor: '#1976d2', width: 36, height: 36, mr: 1, fontWeight: 600, cursor: 'pointer', outline: 'none', transition: 'box-shadow 0.2s', '&:focus': { boxShadow: '0 0 0 2px #1976d2' } }}
-    aria-label="User avatar"
-    tabIndex={0}
-    onClick={() => setMenuOpen(true)}
-    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setMenuOpen(true); }}
-  >
-    {initial}
-  </Avatar>
-  {menuOpen && (
-    <Box sx={{ position: 'absolute', top: 45, left: 0, bgcolor: '#fff', boxShadow: 3, borderRadius: 2, minWidth: 120, zIndex: 10, animation: 'fadeIn 0.2s' }}>
-      <Button fullWidth sx={{ justifyContent: 'flex-start', color: '#1976d2', px: 2 }} onClick={() => { setMenuOpen(false); showSnackbar && showSnackbar('Profile coming soon!', 'info'); }}>
-        Profile
-      </Button>
-      <Button fullWidth sx={{ justifyContent: 'flex-start', color: '#d32f2f', px: 2 }} onClick={handleLogout} aria-label="Logout">
-        Logout
-      </Button>
-    </Box>
-  )}
-</Box>
+                        <Avatar
+                            sx={{ bgcolor: '#1976d2', width: 36, height: 36, mr: 1, fontWeight: 600, cursor: 'pointer', outline: 'none', transition: 'box-shadow 0.2s', '&:focus': { boxShadow: '0 0 0 2px #1976d2' } }}
+                            aria-label="User avatar"
+                            tabIndex={0}
+                            onClick={() => setMenuOpen(true)}
+                            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setMenuOpen(true); }}
+                        >
+                            {initial}
+                        </Avatar>
+                        {menuOpen && (
+                            <Box sx={{ position: 'absolute', top: 45, left: 0, bgcolor: '#fff', boxShadow: 3, borderRadius: 2, minWidth: 120, zIndex: 10, animation: 'fadeIn 0.2s' }}>
+                                <Button fullWidth sx={{ justifyContent: 'flex-start', color: '#1976d2', px: 2 }} onClick={() => { setMenuOpen(false); showSnackbar && showSnackbar('Profile coming soon!', 'info'); }}>
+                                    Profile
+                                </Button>
+                                <Button fullWidth sx={{ justifyContent: 'flex-start', color: '#d32f2f', px: 2 }} onClick={handleLogout} aria-label="Logout">
+                                    Logout
+                                </Button>
+                            </Box>
+                        )}
+                    </Box>
                     {isLoggedIn && username ? (
                         <Typography variant="subtitle1" sx={{ fontWeight: 500, color: '#222' }}>
                             {username}
@@ -57,16 +57,19 @@ const Header = ({ showSnackbar }) => {
                         </Typography>
                     )}
                 </Box>
+                <Typography variant="h5" sx={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', color: '#1976d2', fontWeight: 700, letterSpacing: 1 }}>
+                    Code Sensei
+                </Typography>
                 {isLoggedIn && (
-                    <Button
-                        variant="outlined"
-                        color="inherit"
-                        onClick={handleLogout}
-                        sx={{ ml: 2, color: '#1976d2', borderColor: '#1976d2' }}
-                    >
-                        Logout
-                    </Button>
-                )}
+    <Button
+        variant="outlined"
+        color="inherit"
+        onClick={handleLogout}
+        sx={{ ml: 2, color: '#1976d2', borderColor: '#1976d2' }}
+    >
+        Logout
+    </Button>
+)}
             </Toolbar>
         </AppBar>
     );

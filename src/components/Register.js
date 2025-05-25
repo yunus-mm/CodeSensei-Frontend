@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from './Header';
 import { Box, Button, TextField, Typography, Container, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,9 +42,12 @@ const Register = () => {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Paper sx={{ p: 4, mt: 8, boxShadow: 3 }}>
-                <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ color: '#1976d2' }}>
+        <Container maxWidth="xs">
+            <Paper elevation={3} sx={{ p: 4, mt: 8, boxShadow: 3 }}>
+                <Typography variant="h4" align="center" gutterBottom sx={{ color: '#1976d2', fontWeight: 'bold', mb: 3 }}>
+                    Code Sensei
+                </Typography>
+                <Typography variant="h5" align="center" gutterBottom sx={{ color: '#1976d2', fontWeight: 'bold' }}>
                     Register
                 </Typography>
                 {error && (
@@ -167,13 +169,4 @@ const Register = () => {
     );
 };
 
-
-
-const RegisterWithHeader = (props) => (
-    <>
-        <Header />
-        <Register {...props} />
-    </>
-);
-
-export default RegisterWithHeader;
+export default Register;
